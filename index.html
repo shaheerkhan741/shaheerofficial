@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SHERRY WEARS | Premier Footwear Store</title>
+  <style>
+    /* --- COLOR PALETTE & VARIABLES --- */
+    :root {
+      --bg-main: #F4F5F7;
+      --card-bg: #FFFFFF;
+      --primary-dark: #1E293B; /* Deep Slate */
+      --accent-orange: #FF5722; /* Vibrant Orange */
+      --accent-hover: #E64A19;
+      --text-muted: #64748B;
+      --text-main: #0F172A;
+      --border-color: #E2E8F0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* --- HEADER & NAVIGATION --- */
+    header {
+      background-color: var(--primary-dark);
+      color: #FFF;
+      padding: 1rem 5%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-badge {
+      background-color: var(--accent-orange);
+      color: white;
+      font-weight: 900;
+      font-size: 1.4rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 8px;
+      letter-spacing: 1px;
+    }
+
+    .brand-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #FFF;
+      text-transform: uppercase;
+    }
+
+    .search-box {
+      flex: 1;
+      max-width: 450px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.7rem 1.2rem;
+      border-radius: 25px;
+      border: 2px solid transparent;
+      outline: none;
+      font-size: 0.95rem;
+      background-color: #2D3748;
+      color: #FFF;
+      transition: all 0.3s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent-orange);
+      background-color: #1A202C;
+    }
+
+    .search-box input::placeholder {
+      color: #A0AEC0;
+    }
+
+    .nav-categories {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-categories a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+
+    .nav-categories a:hover,
+    .nav-categories a.active {
+      color: var(--accent-orange);
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-dark) 60%, var(--accent-orange));
+      color: white;
+      padding: 3rem 5%;
+      text-align: center;
+      border-bottom-right-radius: 40px;
+      border-bottom-left-radius: 40px;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* --- PRODUCT CATALOG GRID (Strict 5 Columns) --- */
+    .catalog-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      border-left: 5px solid var(--accent-orange);
+      padding-left: 0.75rem;
+    }
+
+    .catalog-meta {
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 1200px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+
+    .product-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+
+    .product-img-wrap {
+      background-color: #EDF2F7;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.08);
+    }
+
+    .view-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 3px 6px;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    .product-info {
+      padding: 1rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-category {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .product-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0.3rem 0;
+      color: var(--primary-dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .product-price {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--accent-orange);
+      margin-bottom: 0.8rem;
+    }
+
+    .btn-buy {
+      width: 100%;
+      background-color: var(--primary-dark);
+      color: #FFF;
+      border: none;
+      padding: 0.6rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-buy:hover {
+      background-color: var(--accent-orange);
+    }
+
+    /* --- PAGINATION CONTROLS --- */
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 3rem 0 4rem;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--primary-dark);
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .page-btn:hover {
+      border-color: var(--accent-orange);
+      color: var(--accent-orange);
+    }
+
+    .page-btn.active {
+      background-color: var(--accent-orange);
+      color: white;
+      border-color: var(--accent-orange);
+    }
+
+    .page-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* --- MODALS (OVERLAYS) --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 680px;
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    /* Product Detail Main Preview */
+    .main-image-display {
+      width: 100%;
+      height: 280px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      background: #F1F5F9;
+    }
+
+    .main-image-display img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-gallery {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+    }
+
+    .thumbnail-box {
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      flex: 1;
+      height: 80px;
+      position: relative;
+      background: #F8FAFC;
+    }
+
+    .thumbnail-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumbnail-box.active {
+      border-color: var(--accent-orange);
+    }
+
+    .thumbnail-label {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      font-size: 0.65rem;
+      text-align: center;
+      padding: 2px 0;
+      font-weight: 700;
+    }
+
+    .swatches {
+      display: flex;
+      gap: 0.75rem;
+      margin: 0.8rem 0 1.5rem;
+      align-items: center;
+    }
+
+    .swatch {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid var(--border-color);
+      transition: transform 0.2s;
+    }
+
+    .swatch.selected {
+      transform: scale(1.25);
+      border-color: var(--primary-dark);
+    }
+
+    /* Visual Sales Graph (CSS Bars) */
+    .sales-graph-section {
+      margin-top: 1.5rem;
+      background: #F8FAFC;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .sales-graph-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      height: 90px;
+      gap: 1rem;
+      padding-top: 0.5rem;
+    }
+
+    .bar-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .bar {
+      width: 100%;
+      max-width: 32px;
+      background-color: var(--accent-orange);
+      border-radius: 4px 4px 0 0;
+      transition: height 0.5s;
+    }
+
+    .bar-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-top: 0.4rem;
+      color: var(--text-muted);
+    }
+
+    /* Checkout Form Style */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-group input:focus, 
+    .form-group select:focus, 
+    .form-group textarea:focus {
+      border-color: var(--accent-orange);
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* --- FOOTER & OWNER PROFILE --- */
+    footer {
+      background-color: var(--primary-dark);
+      color: #FFF;
+      padding: 3rem 5% 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 2rem;
+    }
+
+    .footer-brand h2 {
+      color: var(--accent-orange);
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-brand p {
+      color: #94A3B8;
+      font-size: 0.95rem;
+    }
+
+    .owner-card {
+      background-color: #0F172A;
+      padding: 1.25rem;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .owner-avatar {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background-color: var(--accent-orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: #FFF;
+      border: 2px solid #FFF;
+      flex-shrink: 0;
+    }
+
+    .owner-details h4 {
+      font-size: 1.1rem;
+      color: #FFF;
+    }
+
+    .owner-details p {
+      font-size: 0.85rem;
+      color: #94A3B8;
+    }
+
+    .owner-details a {
+      color: var(--accent-orange);
+      text-decoration: none;
+    }
+
+    .copyright {
+      text-align: center;
+      color: #64748B;
+      font-size: 0.85rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-box {
+        max-width: 100%;
+      }
+      .nav-categories {
+        justify-content: space-between;
+      }
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-container">
+      <div class="brand-logo">
+        <span class="logo-badge">SW</span>
+        <span class="brand-name">Sherry Wears</span>
+      </div>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search 150+ Peshawari chappals, sandals, shoes..." onkeyup="handleSearch()">
+      </div>
+
+      <ul class="nav-categories">
+        <li><a class="active" onclick="filterCategory('All', this)">All</a></li>
+        <li><a onclick="filterCategory('Men', this)">Men</a></li>
+        <li><a onclick="filterCategory('Women', this)">Women</a></li>
+        <li><a onclick="filterCategory('Children', this)">Children</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Explore Our Grand 150+ Collection</h1>
+    <p>Authentic Peshawari Chappals, Sandals, and Premium Footwear for Everyone.</p>
+  </section>
+
+  <!-- MAIN CATALOG -->
+  <main class="catalog-container">
+    <div class="catalog-header">
+      <h2 class="section-title">Footwear Collection</h2>
+      <div class="catalog-meta" id="catalogMeta">Showing 1-50 of 150 items</div>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+      <!-- Dynamic Rendering -->
+    </div>
+
+    <!-- PAGINATION CONTROLS -->
+    <div class="pagination-container" id="paginationControls">
+      <!-- Dynamic Buttons -->
+    </div>
+  </main>
+
+  <!-- PRODUCT DETAIL MODAL -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('detailModal')">&times;</button>
+      <h2 id="modalTitle" style="color: var(--primary-dark); margin-bottom: 0.2rem;">Product Title</h2>
+      <p id="modalPrice" style="color: var(--accent-orange); font-weight:800; font-size: 1.2rem; margin-bottom: 1rem;"></p>
+      
+      <!-- Main Selected Angle Display -->
+      <div class="main-image-display">
+        <img id="mainDetailImage" src="" alt="Selected Angle View">
+      </div>
+
+      <p style="font-size:0.85rem; font-weight:700; color:var(--text-muted); margin-bottom:0.5rem;">VIEW ANGLES (Click to Inspect)</p>
+      <div class="detail-gallery">
+        <div class="thumbnail-box active" onclick="switchAngle('front', this)">
+          <img id="thumbFront" src="" alt="Front View">
+          <span class="thumbnail-label">Front</span>
+        </div>
+        <div class="thumbnail-box" onclick="switchAngle('side', this)">
+          <img id="thumbSide" src="" alt="Side View">
+          <span class="thumbnail-label">Side</span>
+        </div>
+        <div class="thumbnail-box" onclick="switchAngle('back', this)">
+          <img id="thumbBack" src="" alt="Back View">
+          <span class="thumbnail-label">Back</span>
+        </div>
+      </div>
+
+      <p style="font-size:0.85rem; font-weight:700; color:var(--text-muted);">COLOR OPTIONS</p>
+      <div class="swatches" id="modalSwatches">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Past 4 Months Sales Chart -->
+      <div class="sales-graph-section">
+        <div class="sales-graph-title">Past 4 Months Sales Trend (Units Sold)</div>
+        <div class="chart-bars" id="chartBars">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('checkoutModal')">&times;</button>
+      <h2 style="color: var(--primary-dark); margin-bottom: 0.5rem;">Complete Your Order</h2>
+      <p id="checkoutItemName" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;"></p>
+
+      <form onsubmit="handleCheckout(event)">
+        <div class="form-group">
+          <label>Full Delivery Address</label>
+          <textarea rows="2" placeholder="House/Apartment #, Street, City" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group" style="flex:1;">
+            <label>Select Size (UK/PK)</label>
+            <select required>
+              <option value="7">Size 7</option>
+              <option value="8" selected>Size 8</option>
+              <option value="9">Size 9</option>
+              <option value="10">Size 10</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex:1;">
+            <label>Quantity</label>
+            <select required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Color</label>
+          <select id="checkoutColorSelect" required>
+            <!-- Options updated dynamically -->
+          </select>
+        </div>
+
+        <button type="submit" class="btn-buy" style="background-color: var(--accent-orange); margin-top: 1rem;">Confirm & Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h2>SHERRY WEARS</h2>
+        <p>Premium footwear designed for performance, comfort, and style. Crafting top-tier Peshawari chappals, sandals, and traditional wear for every step you take.</p>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:1rem; color:#FFF;">Business Owner Profile</h3>
+        <div class="owner-card">
+          <div class="owner-avatar">SK</div>
+          <div class="owner-details">
+            <h4>Shaheer Khan</h4>
+            <p>Founder & Owner</p>
+            <p>Email: <a href="mailto:shaheerpakhtoon13@gmail.com">shaheerpakhtoon13@gmail.com</a></p>
+            <p>Contact: <a href="tel:03465911486">03465911486</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2026 SHERRY WEARS. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // --- LARGE UNIQUE IMAGE POOLS FOR EACH CATEGORY ---
+    const menImages = [
+      "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1533867617858-e7d97e0afd8b?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1582874738036-ae5d298493b8?auto=format&fit=crop&w=600&q=80"
+    ];
+
+    const womenImages = [
+      "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1575537302964-96cd47c06b1b?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1512374382146-233842b6a83b?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1579338559194-a162d19bf842?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1529181184684-9ae453e14455?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1603808033192-082d6939d3e1?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1562273138-f46be4ebdf33?auto=format&fit=crop&w=600&q=80"
+    ];
+
+    const childrenImages = [
+      "https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1560072810-1cffb09faf0f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1507469720732-d954e4f16474?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1503944583220-7eeec390d8af?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=600&q=80"
+    ];
+
+    const shoeTypes = {
+      Men: ["Peshawari Chappal", "Simple Chappal", "Leather Sandal", "Formal Leather Shoes", "Casual Loafers"],
+      Women: ["Elegant Sandal", "Traditional Khussa", "Party Heels", "Comfort Flat Sandal", "Fashion Pumps"],
+      Children: ["Kids Light Sandal", "School Shoes", "Play Joggers", "Baby Chappal", "Canvas Sneakers"]
+    };
+
+    const colorPalettes = [
+      ["#1E293B", "#FF5722", "#E2E8F0"],
+      ["#78350F", "#D97706", "#000000"],
+      ["#FFFFFF", "#94A3B8", "#334155"],
+      ["#F43F5E", "#FDE047", "#000000"],
+      ["#3B82F6", "#10B981", "#EF4444"]
+    ];
+
+    // --- GENERATE 150 DYNAMIC PRODUCTS (50 Men, 50 Women, 50 Children) WITH UNIQUE IMAGES ---
+    const allProducts = [];
+
+    for (let i = 1; i <= 150; i++) {
+      let category = i <= 50 ? "Men" : (i <= 100 ? "Women" : "Children");
+      let types = shoeTypes[category];
+      let typeName = types[((i - 1) % types.length)];
+      
+      let imgs = category === "Men" ? menImages : (category === "Women" ? womenImages : childrenImages);
+      let primaryImg = imgs[(i - 1) % imgs.length];
+      let sideImg = imgs[i % imgs.length];
+      let backImg = imgs[(i + 1) % imgs.length];
+
+      allProducts.push({
+        id: i,
+        title: `${category} ${typeName} #${i}`,
+        category: category,
+        tags: [typeName.toLowerCase(), category.toLowerCase()],
+        price: Math.floor(Math.random() * (9000 - 2500 + 1) + 2500),
+        images: {
+          front: primaryImg,
+          side: sideImg,
+          back: backImg
+        },
+        colors: colorPalettes[i % colorPalettes.length],
+        sales: [
+          Math.floor(Math.random() * 150 + 50),
+          Math.floor(Math.random() * 200 + 100),
+          Math.floor(Math.random() * 250 + 150),
+          Math.floor(Math.random() * 300 + 200)
+        ]
+      });
+    }
+
+    // --- STATE MANAGEMENT ---
+    let filteredProducts = [...allProducts];
+    let currentPage = 1;
+    const itemsPerPage = 50; // 10 rows * 5 columns = 50 items per view
+    let selectedProduct = null;
+    const monthLabels = ["Jul", "Aug", "Sep", "Oct"];
+
+    // --- RENDER CATALOG ---
+    function renderCatalog() {
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = "";
+
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageItems = filteredProducts.slice(start, end);
+
+      if (filteredProducts.length === 0) {
+        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 2rem;">No items found matching your filter.</p>`;
+        document.getElementById("catalogMeta").innerText = "0 items found";
+        renderPaginationControls();
+        return;
+      }
+
+      document.getElementById("catalogMeta").innerText = `Showing ${start + 1}-${Math.min(end, filteredProducts.length)} of ${filteredProducts.length} items`;
+
+      pageItems.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="product-img-wrap" onclick="openDetailModal(${product.id})">
+            <span class="view-badge">View Angles</span>
+            <img src="${product.images.front}" alt="${product.title}" loading="lazy">
+          </div>
+          <div class="product-info">
+            <div>
+              <span class="product-category">${product.category}</span>
+              <h3 class="product-title">${product.title}</h3>
+              <div class="product-price">PKR ${product.price.toLocaleString()}</div>
+            </div>
+            <button class="btn-buy" onclick="openCheckoutModal(${product.id})">Buy Now</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      renderPaginationControls();
+    }
+
+    // --- RENDER PAGINATION ---
+    function renderPaginationControls() {
+      const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+      const container = document.getElementById("paginationControls");
+      container.innerHTML = "";
+
+      if (totalPages <= 1) return;
+
+      // Prev Button
+      const prevBtn = document.createElement("button");
+      prevBtn.className = "page-btn";
+      prevBtn.innerText = "« Prev";
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.onclick = () => { currentPage--; renderCatalog(); window.scrollTo({top: 400, behavior: 'smooth'}); };
+      container.appendChild(prevBtn);
+
+      // Page Number Buttons
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+        btn.innerText = i;
+        btn.onclick = () => { currentPage = i; renderCatalog(); window.scrollTo({top: 400, behavior: 'smooth'}); };
+        container.appendChild(btn);
+      }
+
+      // Next Button
+      const nextBtn = document.createElement("button");
+      nextBtn.className = "page-btn";
+      nextBtn.innerText = "Next »";
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.onclick = () => { currentPage++; renderCatalog(); window.scrollTo({top: 400, behavior: 'smooth'}); };
+      container.appendChild(nextBtn);
+    }
+
+    // --- SEARCH & FILTER HANDLERS ---
+    function handleSearch() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      filteredProducts = allProducts.filter(p => 
+        p.title.toLowerCase().includes(query) || 
+        p.category.toLowerCase().includes(query) ||
+        p.tags.some(t => t.includes(query))
+      );
+      currentPage = 1;
+      renderCatalog();
+    }
+
+    function filterCategory(category, element) {
+      document.querySelectorAll('.nav-categories a').forEach(a => a.classList.remove('active'));
+      element.classList.add('active');
+
+      if (category === 'All') {
+        filteredProducts = [...allProducts];
+      } else {
+        filteredProducts = allProducts.filter(p => p.category === category);
+      }
+      currentPage = 1;
+      renderCatalog();
+    }
+
+    // --- MODAL HANDLERS ---
+    function openDetailModal(productId) {
+      selectedProduct = allProducts.find(p => p.id === productId);
+      
+      document.getElementById("modalTitle").innerText = selectedProduct.title;
+      document.getElementById("modalPrice").innerText = `PKR ${selectedProduct.price.toLocaleString()}`;
+      
+      // Set Angles Images
+      document.getElementById("mainDetailImage").src = selectedProduct.images.front;
+      document.getElementById("thumbFront").src = selectedProduct.images.front;
+      document.getElementById("thumbSide").src = selectedProduct.images.side;
+      document.getElementById("thumbBack").src = selectedProduct.images.back;
+
+      // Reset Thumb Active
+      document.querySelectorAll('.thumbnail-box').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.thumbnail-box')[0].classList.add('active');
+
+      // Color Swatches
+      const swatchContainer = document.getElementById("modalSwatches");
+      swatchContainer.innerHTML = "";
+      selectedProduct.colors.forEach((color, idx) => {
+        const span = document.createElement("span");
+        span.className = `swatch ${idx === 0 ? 'selected' : ''}`;
+        span.style.backgroundColor = color;
+        span.onclick = function() {
+          document.querySelectorAll('.swatch').forEach(s => s.classList.remove('selected'));
+          this.classList.add('selected');
+        };
+        swatchContainer.appendChild(span);
+      });
+
+      // Render Sales Chart
+      const maxSales = Math.max(...selectedProduct.sales);
+      const chartBars = document.getElementById("chartBars");
+      chartBars.innerHTML = "";
+      selectedProduct.sales.forEach((val, idx) => {
+        const heightPct = (val / maxSales) * 100;
+        const group = document.createElement("div");
+        group.className = "bar-group";
+        group.innerHTML = `
+          <div class="bar" style="height: ${heightPct}%;" title="${val} units"></div>
+          <span class="bar-label">${monthLabels[idx]}</span>
+        `;
+        chartBars.appendChild(group);
+      });
+
+      document.getElementById("detailModal").classList.add("active");
+    }
+
+    function switchAngle(angle, element) {
+      document.querySelectorAll('.thumbnail-box').forEach(b => b.classList.remove('active'));
+      element.classList.add('active');
+      document.getElementById("mainDetailImage").src = selectedProduct.images[angle];
+    }
+
+    function openCheckoutModal(productId) {
+      selectedProduct = allProducts.find(p => p.id === productId);
+      document.getElementById("checkoutItemName").innerText = `Item: ${selectedProduct.title} - PKR ${selectedProduct.price.toLocaleString()}`;
+      
+      const colorSelect = document.getElementById("checkoutColorSelect");
+      colorSelect.innerHTML = "";
+      selectedProduct.colors.forEach((c, i) => {
+        const opt = document.createElement("option");
+        opt.value = c;
+        opt.innerText = `Color Option ${i + 1}`;
+        colorSelect.appendChild(opt);
+      });
+
+      document.getElementById("checkoutModal").classList.add("active");
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove("active");
+    }
+
+    function handleCheckout(e) {
+      e.preventDefault();
+      alert(`Thank you for ordering from SHERRY WEARS!\nYour order for "${selectedProduct.title}" has been received.`);
+      closeModal("checkoutModal");
+    }
+
+    // INITIAL RENDER
+    renderCatalog();
+  </script>
+</body>
+</html>
